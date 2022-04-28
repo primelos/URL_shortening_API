@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "../button";
 
 const Navbar = () => {
   return (
@@ -16,7 +17,7 @@ const Navbar = () => {
         <RightNav>
           <NavItem>Login</NavItem>
 
-          <NavItem>Sign Up</NavItem>
+          <Button text="Sign Up" />
         </RightNav>
       </RightNavWrapper>
     </NavContainer>
@@ -29,11 +30,12 @@ const NavContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px 0 50px 0;
 `;
 
 const LeftNavWrapper = styled.div`
   display: flex;
-  flex: auto;
+  flex: 1;
 `;
 
 const LeftNav = styled.ul`
@@ -63,7 +65,7 @@ const NavItem = styled.li`
 `;
 
 const RightNavWrapper = styled.div`
-  width: 200px;
+  width: 258px;
 `;
 
 const RightNav = styled.div`
@@ -71,4 +73,5 @@ const RightNav = styled.div`
   justify-content: space-around;
   align-items: center;
   list-style-type: none;
+  margin-right: 78px;
 `;
