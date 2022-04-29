@@ -29,7 +29,7 @@ const IntroContainer = styled.div`
   display: flex;
   max-width: 100%;
   width: 100%;
-  background-color: lightcoral;
+  padding-bottom: 80px;
 `;
 
 const BodyWrapper = styled.div`
