@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import ButtonLink from "../buttonLink/ButtonLink";
 import { v4 as uuidv4 } from "uuid";
 import AdvancedStatistics from "../advanceStatistics";
 
-const initialState = "";
 const Search = () => {
-  const [search, setSearch] = useState(initialState);
-  const [urlData, setUrlData] = useState();
+  const [search, setSearch] = useState({ urlName: "" });
+  const [urlData, setUrlData] = useState("");
   const [shortenUrl, setShortenUrl] = useState([]);
   const [copyState, setCopyState] = useState(false);
+
+  console.log("search", search);
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -18,16 +19,18 @@ const Search = () => {
   };
 
   const handleChange = (e) => {
-    const name = e.target.name;
-    setSearch({ ...search, [name]: e.target.value });
+    setSearch({ urlName: e.target.value });
   };
 
   const handleCopy = async (e) => {
     console.log("e", e);
-    console.log("HEEREREREREREHERERERERE", shortenUrl);
-    let a = await navigator.clipboard.writeText(e);
-    console.log(a);
-    setCopyState(!copyState);
+    let copyLink = await navigator.clipboard.writeText(e.urlShort);
+    e.copyBool = true;
+    setShortenUrl(
+      shortenUrl.map((item) =>
+        item.id === e.id ? { ...item, copyBool: true } : item
+      )
+    );
   };
 
   useEffect(() => {
@@ -42,9 +45,10 @@ const Search = () => {
             id: uuidv4(),
             urlOld: search.urlName,
             urlShort: res.data.result.short_link2,
+            copyBool: false,
           },
         ]);
-        // console.log("res", res);
+        setSearch({ urlName: "" });
       })
       .catch((err) => {
         console.log(err);
@@ -60,9 +64,12 @@ const Search = () => {
           <label style={{ width: "100%" }}>
             <SearchInputWrapper>
               <SearchInput
+                value={search.urlName}
                 onChange={handleChange}
                 name="urlName"
                 placeholder="Shorten a link here..."
+                // pattern="(\d|(\d,\d{0,2}))"
+                // title="YOUR_WARNING_TEXT"
               />
               <ButtonLink type="submit" text="Shorten It!" />
             </SearchInputWrapper>
@@ -96,10 +103,15 @@ const SearchContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media screen and (max-width: 450px) {
+    top: 770px;
+    width: 90%;
+    margin: 0 auto;
+    left: 20px;
+  }
 `;
 
 const SearchWrapper = styled.form`
-  /* position: relative; */
   width: 80%;
   display: flex;
   justify-content: center;
@@ -110,6 +122,9 @@ const SearchInputWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -126,5 +141,9 @@ const SearchInput = styled.input`
     ::placeholder {
       color: #e45b0b;
     }
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 90%;
   }
 `;
