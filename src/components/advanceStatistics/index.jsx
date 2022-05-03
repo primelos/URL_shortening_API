@@ -8,12 +8,16 @@ const AdvancedStatistics = ({ shortenUrl, copyState, handleCopy }) => {
       {shortenUrl.length > 0 &&
         shortenUrl.map((item) => (
           <UrlShortLink key={item.id}>
-            <OldLink>{item.urlOld}</OldLink>
+            <OldLink>
+              {item.urlOld.length < 20
+                ? `${item.urlOld}`
+                : `${item.urlOld.substring(0, 60)}...`}
+            </OldLink>
             <ShortLink href={item.urlShort}>{item.urlShort}</ShortLink>
             <ButtonLink
               item={item}
               copyState={copyState}
-              text={copyState ? "Copied!" : "Copy"}
+              text={item.copyBool ? "Copied!" : "Copy"}
               handleCopy={handleCopy}
             />
           </UrlShortLink>
@@ -29,7 +33,7 @@ const AdvancedStatistics = ({ shortenUrl, copyState, handleCopy }) => {
       <ContentWrapper>
         <Content style={{ position: "relative", top: "119px" }}>
           <ContentImage>
-            <img w src="images/icon-brand-recognition.svg" alt="" />
+            <img src="images/icon-brand-recognition.svg" alt="" />
           </ContentImage>
           <ContentTitle>Brand Recognition</ContentTitle>
           <ContentParagraph>
@@ -37,7 +41,7 @@ const AdvancedStatistics = ({ shortenUrl, copyState, handleCopy }) => {
             mean a thing. Branded links help instil confidence in your contents.
           </ContentParagraph>
         </Content>
-        <Content style={{ position: "relative", top: "179px" }}>
+        <Content style={{ position: "relative", top: "173px" }}>
           <ContentImage>
             <img src="images/icon-detailed-records.svg" alt="" />
           </ContentImage>
@@ -77,6 +81,12 @@ const Container = styled.div`
   position: relative;
   top: 20px;
   padding-bottom: 300px;
+  @media screen and (max-width: 450px) {
+    margin-left: 0;
+    padding-left: 0;
+    margin-right: 0;
+    padding-right: 0;
+  }
 `;
 
 const UrlShortLink = styled.div`
@@ -90,10 +100,12 @@ const UrlShortLink = styled.div`
   padding-left: 15px;
   margin: 15px 0;
   font-family: "Poppins", sans-serif;
-  /* font-weight: 1s00; */
+  text-overflow: ellipsis;
 `;
 const OldLink = styled.a`
   flex: 1;
+  text-align: left;
+  text-overflow: ellipsis;
 `;
 const ShortLink = styled.a`
   color: #58d1d1;
@@ -120,7 +132,13 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
+
 const Content = styled.div`
   background-color: #fff;
   width: 284px;

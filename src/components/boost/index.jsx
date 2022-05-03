@@ -13,6 +13,19 @@ const BoostLinks = () => {
 
 export default BoostLinks;
 
-const Container = styled.div``;
+const Container = styled.div`
+  background-image: url("/images/bg-boost-desktop.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: contain;
+  background-color: #3a3054;
+  height: 140px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
+`;
 
 const Title = styled.h1``;
