@@ -27,8 +27,8 @@ function App() {
 export default App;
 
 const AppContainer = styled.div`
-  /* width: 85%; */
-  /* margin: 0 auto; */
+  width: 85%;
+  margin: 0 auto;
   position: relative;
   height: 100%;
 

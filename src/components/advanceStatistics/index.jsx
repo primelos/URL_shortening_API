@@ -163,6 +163,12 @@ const ContentImage = styled.div`
     width: 30px;
     height: 30px;
   }
+  @media screen and (max-width: 450px) {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
 `;
 const ContentTitle = styled.h2`
   font-family: "Poppins", sans-serif;
