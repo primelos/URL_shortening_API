@@ -10,6 +10,7 @@ const Search = () => {
   const [urlData, setUrlData] = useState("");
   const [shortenUrl, setShortenUrl] = useState([]);
   const [copyState, setCopyState] = useState(false);
+  const [error, setError] = useState("");
 
   console.log("search", search);
 
@@ -19,6 +20,14 @@ const Search = () => {
   };
 
   const handleChange = (e) => {
+    const name = e.target.name;
+    switch (name) {
+      case "urlName":
+        e.target.value < 1 ? setError("Please add a link") : setError("");
+        break;
+      default:
+        break;
+    }
     setSearch({ urlName: e.target.value });
   };
 
@@ -61,20 +70,20 @@ const Search = () => {
     <>
       <SearchContainer>
         <SearchWrapper onSubmit={handleSend}>
-          <label style={{ width: "100%" }}>
-            <SearchInputWrapper>
-              <SearchInput
-                value={search.urlName}
-                onChange={handleChange}
-                name="urlName"
-                placeholder="Shorten a link here..."
-                // pattern="(\d|(\d,\d{0,2}))"
-                // title="YOUR_WARNING_TEXT"
-              />
-              <ButtonLink type="submit" text="Shorten It!" />
-            </SearchInputWrapper>
-            Please add a link
-          </label>
+          {/* <label style={{ width: "100%" }}> */}
+          <SearchInputWrapper>
+            <SearchInput
+              value={search.urlName}
+              onChange={handleChange}
+              name="urlName"
+              placeholder="Shorten a link here..."
+              // pattern="(\d|(\d,\d{0,2}))"
+              // title="YOUR_WARNING_TEXT"
+            />
+            {error.length > 0 && <span className="error">{error}</span>}
+            <ButtonLink type="submit" text="Shorten It!" />
+          </SearchInputWrapper>
+          {/* </label> */}
         </SearchWrapper>
       </SearchContainer>
       <AdvancedStatistics
@@ -119,6 +128,7 @@ const SearchWrapper = styled.form`
 `;
 
 const SearchInputWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -145,5 +155,6 @@ const SearchInput = styled.input`
 
   @media screen and (max-width: 450px) {
     width: 90%;
+    margin-bottom: 20px;
   }
 `;

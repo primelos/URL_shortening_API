@@ -23,4 +23,7 @@ const ButtonContainer = styled.button`
     cursor: pointer;
     background-color: #9ce2e2;
   }
+  @media screen and (max-width: 450px) {
+    padding: 12px 42px;
+  }
 `;

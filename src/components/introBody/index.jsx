@@ -68,7 +68,7 @@ const BodyWrapper = styled.div`
     color: grey;
     margin: 5px 0 30px 0;
     @media screen and (max-width: 450px) {
-      width: 66%;
+      width: 61%;
     }
   }
 `;

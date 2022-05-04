@@ -8,18 +8,29 @@ const AdvancedStatistics = ({ shortenUrl, copyState, handleCopy }) => {
       {shortenUrl.length > 0 &&
         shortenUrl.map((item) => (
           <UrlShortLink key={item.id}>
-            <OldLink>
-              {item.urlOld.length < 20
-                ? `${item.urlOld}`
-                : `${item.urlOld.substring(0, 60)}...`}
-            </OldLink>
-            <ShortLink href={item.urlShort}>{item.urlShort}</ShortLink>
-            <ButtonLink
-              item={item}
-              copyState={copyState}
-              text={item.copyBool ? "Copied!" : "Copy"}
-              handleCopy={handleCopy}
-            />
+            <ResultContainer>
+              <OldLink>
+                {item.urlOld.length < 20
+                  ? `${item.urlOld}`
+                  : `${item.urlOld.substring(0, 60)}...`}
+              </OldLink>
+              <LinkLine />
+              <ShortLink
+                href={"//" + item.urlShort}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://{item.urlShort}
+              </ShortLink>
+              <ButtonContainer>
+                <ButtonLink
+                  item={item}
+                  copyState={copyState}
+                  text={item.copyBool ? "Copied!" : "Copy"}
+                  handleCopy={handleCopy}
+                />
+              </ButtonContainer>
+            </ResultContainer>
           </UrlShortLink>
         ))}
 
@@ -82,14 +93,22 @@ const Container = styled.div`
   top: 20px;
   padding-bottom: 300px;
   @media screen and (max-width: 450px) {
-    margin-left: 0;
-    padding-left: 0;
-    margin-right: 0;
-    padding-right: 0;
+    margin-left: -5vw;
+    padding-left: 5vw;
+    margin-right: -5vw;
+    padding-right: 5vw;
   }
 `;
 
 const UrlShortLink = styled.div`
+  width: 100%;
+  @media screen and (max-width: 450px) {
+    width: 100%;
+    margin: 0 auto;
+  }
+`;
+
+const ResultContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -101,15 +120,38 @@ const UrlShortLink = styled.div`
   margin: 15px 0;
   font-family: "Poppins", sans-serif;
   text-overflow: ellipsis;
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+    width: 90%;
+    margin: 0 auto;
+    padding-left: 0;
+    align-items: flex-start;
+    padding-bottom: 10px;
+  }
 `;
+
 const OldLink = styled.a`
   flex: 1;
   text-align: left;
   text-overflow: ellipsis;
+  @media screen and (max-width: 450px) {
+    margin: 10px 0 10px 10px;
+  }
 `;
 const ShortLink = styled.a`
   color: #58d1d1;
   text-decoration: none;
+  @media screen and (max-width: 450px) {
+    margin: 10px 0 10px 10px;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  @media screen and (max-width: 450px) {
+    width: 95%;
+    border-radius: 5px;
+    margin: 0 auto;
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -126,6 +168,9 @@ const Paragraph = styled.p`
   margin: auto;
   color: grey;
   font-family: "Poppins", sans-serif;
+  @media screen and (max-width: 450px) {
+    width: 70%;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -177,4 +222,15 @@ const ContentParagraph = styled.p``;
 
 const Line = styled.hr`
   border: 3px solid #58d1d1;
+`;
+
+const LinkLine = styled.hr`
+  display: none;
+
+  @media screen and (max-width: 450px) {
+    display: block;
+    width: 100%;
+    border: 1px solid #eff0f5;
+    margin: 0;
+  }
 `;
