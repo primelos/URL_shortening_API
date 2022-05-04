@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const ButtonLink = (props) => {
-  // console.log("props", props);
-
   return (
     <ButtonWrapper>
       {props.copyState === true || props.copyState === false ? (
@@ -30,6 +28,8 @@ const ButtonWrapper = styled.div`
   @media screen and (max-width: 450px) {
     width: 100%;
     padding: 0;
+    position: relative;
+    top: 40px;
   }
 `;
 
