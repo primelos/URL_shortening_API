@@ -216,4 +216,7 @@ const SpanWrapper = styled.span`
   z-index: 1;
   position: absolute;
   top: 28px;
+  @media screen and (max-width: 450px) {
+    top: 14px;
+  }
 `;

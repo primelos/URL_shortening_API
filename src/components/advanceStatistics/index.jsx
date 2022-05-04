@@ -33,7 +33,6 @@ const AdvancedStatistics = ({ shortenUrl, copyState, handleCopy }) => {
             </ResultContainer>
           </UrlShortLink>
         ))}
-
       <TitleWrapper>
         <Title>Advance Statistics</Title>
         <Paragraph>
@@ -74,6 +73,7 @@ const AdvancedStatistics = ({ shortenUrl, copyState, handleCopy }) => {
         </Content>
       </ContentWrapper>
       <Line />
+      <VerticalLine />
     </Container>
   );
 };
@@ -184,6 +184,9 @@ const ContentWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    div:nth-child(3) {
+      top: 230px !important;
+    }
   }
 `;
 
@@ -194,6 +197,7 @@ const Content = styled.div`
   padding: 36px 10px 0px 10px;
   text-align: left;
   position: relative;
+  z-index: 1;
 `;
 
 const ContentImage = styled.div`
@@ -225,6 +229,9 @@ const ContentParagraph = styled.p``;
 
 const Line = styled.hr`
   border: 3px solid #58d1d1;
+  @media screen and (max-width: 450px) {
+    display: none;
+  }
 `;
 
 const LinkLine = styled.hr`
@@ -235,5 +242,18 @@ const LinkLine = styled.hr`
     width: 100%;
     border: 1px solid #eff0f5;
     margin: 0;
+  }
+`;
+
+const VerticalLine = styled.div`
+  display: none;
+  @media screen and (max-width: 450px) {
+    display: block;
+    border-left: 6px solid #58d1d1;
+    height: 30%;
+    position: absolute;
+    left: 49.3%;
+    padding: 100px 0;
+    bottom: 120px;
   }
 `;
