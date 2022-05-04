@@ -34,5 +34,6 @@ const AppContainer = styled.div`
 
   @media screen and (max-width: 450px) {
     width: 100%;
+    overflow: hidden;
   }
 `;

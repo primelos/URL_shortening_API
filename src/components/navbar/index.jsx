@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../button";
-
+import { HiOutlineMenu } from "react-icons/hi";
 const Navbar = () => {
   return (
     <NavContainer>
@@ -19,6 +19,7 @@ const Navbar = () => {
 
           <Button text="Sign Up" />
         </RightNav>
+        <Burger />
       </RightNavWrapper>
     </NavContainer>
   );
@@ -61,8 +62,12 @@ const LeftNav = styled.ul`
     color: #121117;
   }
   @media screen and (max-width: 450px) {
+    width: 100vw;
     li:not(:first-child) {
       display: none;
+    }
+    li:first-child {
+      margin-left: 40px;
     }
   }
 `;
@@ -79,5 +84,17 @@ const RightNav = styled.div`
   margin-right: 78px;
   @media screen and (max-width: 450px) {
     display: none;
+  }
+`;
+
+const Burger = styled(HiOutlineMenu)`
+  width: 30px;
+  height: 30px;
+  display: none;
+  color: grey;
+
+  @media screen and (max-width: 450px) {
+    display: block;
+    padding-right: 40px;
   }
 `;

@@ -29,6 +29,7 @@ const ButtonWrapper = styled.div`
   padding: 5px 10px;
   @media screen and (max-width: 450px) {
     width: 100%;
+    padding: 0;
   }
 `;
 
