@@ -6,13 +6,34 @@ import { v4 as uuidv4 } from "uuid";
 import AdvancedStatistics from "../advanceStatistics";
 
 const Search = () => {
+  const useLocalStorage = () => {
+    const [storedValue, setStoredValue] = useState(() => {
+      try {
+        const item = window.localStorage.getItem("saved");
+        return item ? JSON.parse(item) : [];
+      } catch (error) {
+        console.log("error", error);
+      }
+    });
+
+    const setValue = (value) => {
+      try {
+        const valueToStore =
+          value instanceof Function ? value(storedValue) : value;
+        setStoredValue(valueToStore);
+        window.localStorage.setItem("saved", JSON.stringify(valueToStore));
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    return [storedValue, setValue];
+  };
+
   const [search, setSearch] = useState({ urlName: "" });
   const [urlData, setUrlData] = useState("");
-  const [shortenUrl, setShortenUrl] = useState([]);
+  const [shortenUrl, setShortenUrl] = useLocalStorage([]);
   const [copyState, setCopyState] = useState(false);
   const [error, setError] = useState("");
-
-  console.log("search", search);
 
   const handleSend = (e) => {
     e.preventDefault();
@@ -32,9 +53,7 @@ const Search = () => {
   };
 
   const handleCopy = async (e) => {
-    console.log("e", e);
     let copyLink = await navigator.clipboard.writeText(e.urlShort);
-    e.copyBool = true;
     setShortenUrl(
       shortenUrl.map((item) =>
         item.id === e.id ? { ...item, copyBool: true } : item
@@ -59,12 +78,10 @@ const Search = () => {
         ]);
         setSearch({ urlName: "" });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   }, [urlData]);
-
-  console.log("shortenUrl", shortenUrl);
 
   return (
     <>
@@ -72,15 +89,19 @@ const Search = () => {
         <SearchWrapper onSubmit={handleSend}>
           {/* <label style={{ width: "100%" }}> */}
           <SearchInputWrapper>
-            <SearchInput
-              value={search.urlName}
-              onChange={handleChange}
-              name="urlName"
-              placeholder="Shorten a link here..."
-              // pattern="(\d|(\d,\d{0,2}))"
-              // title="YOUR_WARNING_TEXT"
-            />
-            {error.length > 0 && <span className="error">{error}</span>}
+            <SearchStyle>
+              <SearchInput
+                value={search.urlName}
+                onChange={handleChange}
+                name="urlName"
+                placeholder="Shorten a link here..."
+                // pattern="(\d|(\d,\d{0,2}))"
+                // title="YOUR_WARNING_TEXT"
+              />
+              {error.length > 0 && (
+                <SpanWrapper className="error">{error}</SpanWrapper>
+              )}
+            </SearchStyle>
             <ButtonLink type="submit" text="Shorten It!" />
           </SearchInputWrapper>
           {/* </label> */}
@@ -112,6 +133,24 @@ const SearchContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media screen and (max-width: 1250px) {
+    top: 750px;
+    width: 90%;
+    margin: 0 auto;
+    left: 20px;
+  }
+  @media screen and (max-width: 1040px) {
+    top: 850px;
+    width: 90%;
+    margin: 0 auto;
+    left: 20px;
+  }
+  @media screen and (max-width: 850px) {
+    top: 990px;
+    width: 90%;
+    margin: 0 auto;
+    left: 20px;
+  }
   @media screen and (max-width: 450px) {
     top: 770px;
     width: 90%;
@@ -121,7 +160,7 @@ const SearchContainer = styled.div`
 `;
 
 const SearchWrapper = styled.form`
-  width: 80%;
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,6 +183,8 @@ const SearchInput = styled.input`
   flex: 1;
   border: none;
   font-size: 15px;
+  width: 95%;
+  position: absolute;
 
   &:focus {
     outline: none;
@@ -157,4 +198,22 @@ const SearchInput = styled.input`
     width: 90%;
     margin-bottom: 20px;
   }
+`;
+
+const SearchStyle = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+`;
+
+const SpanWrapper = styled.span`
+  width: 96%;
+  color: #e45b0b;
+  z-index: 1;
+  position: absolute;
+  top: 28px;
 `;

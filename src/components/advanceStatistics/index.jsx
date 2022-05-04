@@ -120,6 +120,8 @@ const ResultContainer = styled.div`
   margin: 15px 0;
   font-family: "Poppins", sans-serif;
   text-overflow: ellipsis;
+  padding-top: 8px;
+  padding-bottom: 8px;
   @media screen and (max-width: 450px) {
     flex-direction: column;
     width: 90%;
@@ -127,6 +129,7 @@ const ResultContainer = styled.div`
     padding-left: 0;
     align-items: flex-start;
     padding-bottom: 10px;
+    margin-top: 5px;
   }
 `;
 

@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const ButtonLink = (props) => {
-  // console.log("props", props);
-
   return (
     <ButtonWrapper>
       {props.copyState === true || props.copyState === false ? (
