@@ -95,8 +95,6 @@ const Search = () => {
                 onChange={handleChange}
                 name="urlName"
                 placeholder="Shorten a link here..."
-                // pattern="(\d|(\d,\d{0,2}))"
-                // title="YOUR_WARNING_TEXT"
               />
               {error.length > 0 && (
                 <SpanWrapper className="error">{error}</SpanWrapper>
@@ -152,7 +150,7 @@ const SearchContainer = styled.div`
     left: 20px;
   }
   @media screen and (max-width: 450px) {
-    top: 770px;
+    top: 801px;
     width: 90%;
     margin: 0 auto;
     left: 20px;
@@ -176,30 +174,6 @@ const SearchInputWrapper = styled.div`
   }
 `;
 
-const SearchInput = styled.input`
-  padding: 11px 15px;
-  border-radius: 5px;
-  display: flex;
-  flex: 1;
-  border: none;
-  font-size: 15px;
-  width: 95%;
-  position: absolute;
-
-  &:focus {
-    outline: none;
-    border: 2px solid #e45b0b;
-    ::placeholder {
-      color: #e45b0b;
-    }
-  }
-
-  @media screen and (max-width: 450px) {
-    width: 90%;
-    margin-bottom: 20px;
-  }
-`;
-
 const SearchStyle = styled.div`
   width: 100%;
   display: flex;
@@ -215,8 +189,32 @@ const SpanWrapper = styled.span`
   color: #e45b0b;
   z-index: 1;
   position: absolute;
-  top: 28px;
+  top: 48px;
   @media screen and (max-width: 450px) {
-    top: 14px;
+    top: 44px;
+  }
+`;
+
+const SearchInput = styled.input`
+  padding: 11px 15px;
+  border-radius: 5px;
+  display: flex;
+  flex: 1;
+  border: none;
+  font-size: 15px;
+  width: 95%;
+  /* position: absolute; */
+
+  &:focus {
+    outline: none;
+    border: 2px solid #e45b0b;
+    ::placeholder {
+      color: #e45b0b;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 90%;
+    margin-bottom: 40px;
   }
 `;

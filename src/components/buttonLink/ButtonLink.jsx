@@ -28,8 +28,8 @@ const ButtonWrapper = styled.div`
   @media screen and (max-width: 450px) {
     width: 100%;
     padding: 0;
-    position: relative;
-    top: 40px;
+    /* position: relative;
+    top: 40px; */
   }
 `;
 
