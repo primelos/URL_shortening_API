@@ -72,7 +72,7 @@ const LeftNav = styled.ul`
   }
 `;
 
-const RightNavWrapper = styled.ul`
+const RightNavWrapper = styled.div`
   width: 258px;
 `;
 

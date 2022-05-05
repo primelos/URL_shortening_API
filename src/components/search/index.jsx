@@ -131,6 +131,12 @@ const SearchContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media screen and (max-width: 1330px) {
+    top: 742px;
+    width: 90%;
+    margin: 0 auto;
+    left: 20px;
+  }
   @media screen and (max-width: 1250px) {
     top: 750px;
     width: 90%;
