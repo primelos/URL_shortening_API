@@ -29,11 +29,12 @@ const Footer = () => {
         </RowContainer>
       </LinksContainer>
       <IconContainer>
-        <Icon src="images/icon-facebook.svg" />
-        <Icon src="images/icon-twitter.svg" />
-        <Icon src="images/icon-pinterest.svg" />
-        <Icon src="images/icon-instagram.svg" />
+        <Icon src="images/icon-facebook.svg" alt="facebook icon" />
+        <Icon src="images/icon-twitter.svg" alt="twitter icon" />
+        <Icon src="images/icon-pinterest.svg" alt=" pinterest icon" />
+        <Icon src="images/icon-instagram.svg" alt="instagram icon" />
       </IconContainer>
+      alt=''
     </Container>
   );
 };
