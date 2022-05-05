@@ -43,7 +43,7 @@ const AdvancedStatistics = ({ shortenUrl, copyState, handleCopy }) => {
       <ContentWrapper>
         <Content style={{ position: "relative", top: "119px" }}>
           <ContentImage>
-            <img src="images/icon-brand-recognition.svg" alt="" />
+            <img src="images/icon-brand-recognition.svg" alt="graph" />
           </ContentImage>
           <ContentTitle>Brand Recognition</ContentTitle>
           <ContentParagraph>
@@ -53,7 +53,7 @@ const AdvancedStatistics = ({ shortenUrl, copyState, handleCopy }) => {
         </Content>
         <Content style={{ position: "relative", top: "173px" }}>
           <ContentImage>
-            <img src="images/icon-detailed-records.svg" alt="" />
+            <img src="images/icon-detailed-records.svg" alt="speed dial" />
           </ContentImage>
           <ContentTitle>Detailed Records</ContentTitle>
           <ContentParagraph>
@@ -63,7 +63,7 @@ const AdvancedStatistics = ({ shortenUrl, copyState, handleCopy }) => {
         </Content>
         <Content style={{ position: "relative", top: "213px" }}>
           <ContentImage>
-            <img src="images/icon-fully-customizable.svg" alt="" />
+            <img src="images/icon-fully-customizable.svg" alt="pen stylus" />
           </ContentImage>
           <ContentTitle>Fully Customizable</ContentTitle>
           <ContentParagraph>
